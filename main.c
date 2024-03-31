@@ -148,7 +148,7 @@ void test_copyIfReverse() {
     // Проверяем, что скопировано правильно
     assert(result == destination + 9); // Указатель на следующий свободный для записи фрагмент в памяти
     assert(my_strcmp(destination, "dlroWolleH") == 0); // Проверка скопированной строки
-    
+
 }
 
 
