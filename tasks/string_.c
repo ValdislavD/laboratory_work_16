@@ -27,8 +27,11 @@ char* findSpace(char *begin) {
 }
 
 char* findNonSpaceReverse(char *rbegin, const char *rend) {
-    while (rbegin != rend && (*rbegin == ' ' || *rbegin == '\0'))
+    while (rbegin > rend) {
+        if (!isspace(*rbegin))
+            return rbegin;
         rbegin--;
+    }
     return rbegin;
 }
 

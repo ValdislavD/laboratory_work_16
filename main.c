@@ -66,15 +66,13 @@ void test_findSpace() {
 }
 
 void test_findNonSpaceReverse() {
-    char str[] = "  Hello  World";
-    char *p = &str[10];
-    char *nonSpace = findNonSpaceReverse(p, str);
-    assert(*nonSpace == 'd');
+    char s[] = "   Hello World!    ";
+    char *nonSpace = findNonSpaceReverse(s + string_length(s) - 10, s);
+    assert(*nonSpace == 'W');
 
-    char str2[] = "  Hello  World";
-    char *p2 = &str2[5];
-    char *nonSpace2 = findNonSpaceReverse(p2, str2);
-    assert(*nonSpace2 == 'l');
+    char s2[] = "   \t\t";
+    nonSpace = findNonSpaceReverse(s2 + string_length(s2) + 1, s2);
+    assert(*nonSpace == '\0');
 }
 
 void test_findSpaceReverse() {
