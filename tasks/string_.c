@@ -19,3 +19,21 @@ char* findNonSpace(char *begin) {
         begin++;
     return begin;
 }
+
+char* findSpace(char *begin) {
+    while (*begin != ' ' && *begin != '\0')
+        begin++;
+    return begin;
+}
+
+char* findNonSpaceReverse(char *rbegin, const char *rend) {
+    while (rbegin != rend && (*rbegin == ' ' || *rbegin == '\0'))
+        rbegin--;
+    return rbegin;
+}
+
+char* findSpaceReverse(char *rbegin, const char *rend) {
+    while (rbegin != rend && *rbegin != ' ')
+        rbegin--;
+    return rbegin;
+}

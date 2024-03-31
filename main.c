@@ -51,10 +51,51 @@ void test_findNonSpace() {
     assert(*findNonSpace(begin) == '\0');
 }
 
+void test_findSpace() {
+    char str[] = "Hello World";
+    char *p = str;
+    while (*p != '\0') p++;
+    char *space = findSpace(str);
+    assert(*space == ' ');
+
+    char str2[] = "HelloWorld";
+    char *p2 = str2;
+    while (*p2 != '\0') p2++;
+    char *space2 = findSpace(str2);
+    assert(space2 == p2);
+}
+
+void test_findNonSpaceReverse() {
+    char str[] = "  Hello  World";
+    char *p = &str[10];
+    char *nonSpace = findNonSpaceReverse(p, str);
+    assert(*nonSpace == 'd');
+
+    char str2[] = "  Hello  World";
+    char *p2 = &str2[5];
+    char *nonSpace2 = findNonSpaceReverse(p2, str2);
+    assert(*nonSpace2 == 'l');
+}
+
+void test_findSpaceReverse() {
+    char str[] = "Hello World ";
+    char *p = &str[10];
+    char *space = findSpaceReverse(p, str);
+    assert(*space == ' ');
+
+    char str2[] = "HelloWorld";
+    char *p2 = &str2[9];
+    char *space2 = findSpaceReverse(p2, str2);
+    assert(space2 == str2);
+}
+
 int main() {
     test_strlen();
     test_find();
     test_findNonSpace();
+    test_findSpace();
+    test_findNonSpaceReverse();
+    test_findSpaceReverse();
     printf("All tests passed successfully!\n");
     return 0;
 }
