@@ -115,7 +115,7 @@ void test_copy() {
 
     // Проверяем, что скопировано правильно
     assert(nextFree == destination + 5); // Указатель на следующий свободный фрагмент
-    
+
 }
 
 int isDigit(int ch) {
@@ -133,6 +133,25 @@ void test_copyIf() {
     assert(nextFree == destination + 5); // Указатель на следующий свободный фрагмент
 }
 
+// Функция-предикат для копирования только букв
+int isAlpha(int ch) {
+    return ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'));
+}
+
+void test_copyIfReverse() {
+    char source[] = "Hello12345World";
+    char destination[20] = {0}; // Инициализируем массив нулями
+
+    // Копируем только буквы из source в destination в обратном порядке
+    char* result = copyIfReverse(source + 14, source - 1, destination, isAlpha);
+
+    // Проверяем, что скопировано правильно
+    assert(result == destination + 9); // Указатель на следующий свободный для записи фрагмент в памяти
+    assert(my_strcmp(destination, "dlroWolleH") == 0); // Проверка скопированной строки
+    
+}
+
+
 int main() {
     test_strlen();
     test_find();
@@ -143,6 +162,7 @@ int main() {
     test_my_strcmp();
     test_copy();
     test_copyIf();
+    test_copyIfReverse();
     printf("All tests passed successfully!\n");
     return 0;
 }

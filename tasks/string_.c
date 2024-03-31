@@ -79,3 +79,16 @@ char* copyIf(char *beginSource, const char *endSource, char *beginDestination, i
     }
     return beginDestination;
 }
+
+char* copyIfReverse(char *rbeginSource, const char *rendSource, char *beginDestination, int (*f)(int)) {
+    char *lastCopied = beginDestination;
+    while (rbeginSource >= rendSource) {
+        if (f(*rbeginSource)) {
+            *beginDestination = *rbeginSource;
+            lastCopied = beginDestination;  // Обновляем указатель на последний скопированный элемент
+            beginDestination++;
+        }
+        rbeginSource--;
+    }
+    return lastCopied;
+}
