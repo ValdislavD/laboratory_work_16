@@ -40,3 +40,42 @@ char* findSpaceReverse(char *rbegin, const char *rend) {
         rbegin--;
     return rbegin;
 }
+
+int my_strcmp(const char *lhs, const char *rhs) {
+    while (*lhs && *rhs && *lhs == *rhs) {
+        lhs++;
+        rhs++;
+    }
+    return *lhs - *rhs;
+}
+
+char* copy(const char *beginSource, const char *endSource, char *beginDestination) {
+    // Вычисляем длину фрагмента для копирования
+    size_t length = 0;
+    const char *temp = beginSource;
+    while (temp != endSource) {
+        ++length;
+        ++temp;
+    }
+
+    // Копируем фрагмент
+    temp = beginSource;
+    char *dest = beginDestination;
+    while (length--) {
+        *dest++ = *temp++;
+    }
+
+    // Возвращаем указатель на следующий свободный фрагмент памяти в destination
+    return dest;
+}
+
+char* copyIf(char *beginSource, const char *endSource, char *beginDestination, int (*f)(int)) {
+    while (beginSource != endSource) {
+        if (f(*beginSource)) {
+            *beginDestination = *beginSource;
+            beginDestination++;
+        }
+        beginSource++;
+    }
+    return beginDestination;
+}

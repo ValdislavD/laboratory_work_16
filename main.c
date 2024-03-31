@@ -87,6 +87,52 @@ void test_findSpaceReverse() {
     assert(space2 == str2);
 }
 
+void test_my_strcmp() {
+    const char *str1 = "hello";
+    const char *str2 = "world";
+    const char *str3 = "hello";
+    const char *str4 = "hell";
+
+    // Тестируем случай, когда lhs располагается перед rhs
+    assert(my_strcmp(str1, str2) < 0);
+
+    // Тестируем случай, когда lhs равно rhs
+    assert(my_strcmp(str1, str3) == 0);
+
+    // Тестируем случай, когда lhs располагается после rhs
+    assert(my_strcmp(str2, str1) > 0);
+
+    // Тестируем случай, когда lhs длиннее rhs
+    assert(my_strcmp(str1, str4) > 0);
+}
+
+void test_copy() {
+    char source[] = "Hello, world!";
+    char destination[20] = {0}; // Инициализируем массив нулями
+
+    // Копируем фрагмент из source в destination
+    char* nextFree = copy(source, source + 5, destination);
+
+    // Проверяем, что скопировано правильно
+    assert(nextFree == destination + 5); // Указатель на следующий свободный фрагмент
+    
+}
+
+int isDigit(int ch) {
+    return (ch >= '0' && ch <= '9');
+}
+
+void test_copyIf() {
+    char source[] = "Hello12345World";
+    char destination[20] = {0}; // Инициализируем массив нулями
+
+    // Копируем только цифры из source в destination
+    char* nextFree = copyIf(source, source + 15, destination, isDigit);
+
+    // Проверяем, что скопировано правильно
+    assert(nextFree == destination + 5); // Указатель на следующий свободный фрагмент
+}
+
 int main() {
     test_strlen();
     test_find();
@@ -94,6 +140,9 @@ int main() {
     test_findSpace();
     test_findNonSpaceReverse();
     test_findSpaceReverse();
+    test_my_strcmp();
+    test_copy();
+    test_copyIf();
     printf("All tests passed successfully!\n");
     return 0;
 }

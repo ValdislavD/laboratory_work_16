@@ -15,4 +15,10 @@ char* findNonSpaceReverse(char *rbegin, const char *rend); //возвращае�
 
 char* findSpaceReverse(char *rbegin, const char *rend); //возвращает указатель на первый пробельный символ справа, расположенный на ленте памяти
 
+int my_strcmp(const char *lhs, const char *rhs); //сравнивает две строки
+
+char* copy(const char *beginSource, const char *endSource, char *beginDestination); //записывает по адресу beginDestination фрагмент памяти
+
+char* copyIf(char *beginSource, const char *endSource, char *beginDestination, int (*f)(int)); //записывает по адресу beginDestination элементы из фрагмента памяти начиная с beginSource заканчивая endSource, удовлетворяющие функции-предикату f.
+
 #endif //UNTITLED20_STRING__H
