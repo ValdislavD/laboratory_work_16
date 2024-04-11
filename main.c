@@ -52,7 +52,7 @@ void test_findNonSpace() {
 }
 
 void test_findSpace() {
-    char str[] = "Hello World";
+    char str[] = " Hello World\0";
     char *p = str;
     while (*p != '\0') p++;
     char *space = findSpace(str);
