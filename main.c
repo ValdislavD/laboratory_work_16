@@ -1,4 +1,4 @@
-#include <stdio.h>
+/*#include <stdio.h>
 #include <assert.h>
 #include "tasks/string_.h"
 
@@ -166,3 +166,4 @@ int main() {
     printf("All tests passed successfully!\n");
     return 0;
 }
+*/

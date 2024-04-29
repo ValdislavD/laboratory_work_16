@@ -88,6 +88,12 @@ build CMakeFiles/str.dir/tasks/string_.c.obj: C_COMPILER__str_unscanned_Debug C$
   OBJECT_DIR = CMakeFiles\str.dir
   OBJECT_FILE_DIR = CMakeFiles\str.dir\tasks
 
+build CMakeFiles/str.dir/first_task.c.obj: C_COMPILER__str_unscanned_Debug C$:/Users/vladi/CLionProjects/untitled21/first_task.c || cmake_object_order_depends_target_str
+  DEP_FILE = CMakeFiles\str.dir\first_task.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\str.dir
+  OBJECT_FILE_DIR = CMakeFiles\str.dir
+
 
 # =============================================================================
 # Link build statements for STATIC_LIBRARY target str
@@ -96,7 +102,7 @@ build CMakeFiles/str.dir/tasks/string_.c.obj: C_COMPILER__str_unscanned_Debug C$
 #############################################
 # Link the static library libstr.a
 
-build libstr.a: C_STATIC_LIBRARY_LINKER__str_Debug CMakeFiles/str.dir/tasks/string_.c.obj
+build libstr.a: C_STATIC_LIBRARY_LINKER__str_Debug CMakeFiles/str.dir/tasks/string_.c.obj CMakeFiles/str.dir/first_task.c.obj
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = CMakeFiles\str.dir
   POST_BUILD = cd .
