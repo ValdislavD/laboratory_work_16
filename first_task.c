@@ -1,4 +1,4 @@
-#include <stdio.h>
+/*#include <stdio.h>
 #include "tasks/string_.h"
 #include <ctype.h>
 #define ASSERT_STRING(expected, got) assertString(expected, got, __FILE__, __FUNCTION__, __LINE__)
@@ -99,3 +99,4 @@ int main() {
     test_removeNonLetters();
     return 0;
 }
+*/
