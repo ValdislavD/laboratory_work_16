@@ -1,6 +1,5 @@
-#include <stdio.h>
+/*#include <stdio.h>
 #include "tasks/string_.h"
-#include <ctype.h>
 
 void removeAdjacentEqualLetters(char *s) {
     if (s == NULL || *s == '\0') {
@@ -158,3 +157,4 @@ int main() {
     test_removeExtraSpaces();
     return 0;
 }
+*/

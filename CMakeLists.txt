@@ -9,6 +9,7 @@ add_library(str tasks/string_.c
         tasks/string_.h
         first_task.c
         second_task.c
+        third_task.c
 )
 
 target_link_libraries(untitled21 str)

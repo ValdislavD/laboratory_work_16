@@ -3,6 +3,12 @@
 
 #include <stdio.h>
 
+// Максимальный размер строки для буфера
+#define MAX_STRING_SIZE 100
+
+// Глобальная переменная для буфера строк
+extern char _stringBuffer[MAX_STRING_SIZE + 1];
+
 size_t string_length(const char *s); //возвращает количество символов в строке
 
 char* find(char *begin, const char *end, int ch); //возвращает указатель на первый элемент с кодом ch

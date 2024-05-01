@@ -52,7 +52,9 @@
 			[
 				0,
 				2,
-				3
+				3,
+				4,
+				5
 			]
 		}
 	],
@@ -72,7 +74,9 @@
 			[
 				0,
 				2,
-				3
+				3,
+				4,
+				5
 			]
 		},
 		{
@@ -106,6 +110,18 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "second_task.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "third_task.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "fourth_task.c",
 			"sourceGroupIndex" : 0
 		}
 	],
