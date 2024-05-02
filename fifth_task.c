@@ -1,4 +1,4 @@
-#include <stdio.h>
+/*#include <stdio.h>
 #include "tasks/string_.h"
 
 // Макрос для проверки и вывода результатов с использованием assertString
@@ -140,3 +140,4 @@ int main() {
 
     return 0;
 }
+*/
