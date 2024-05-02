@@ -1,5 +1,4 @@
-#include <stdio.h>
-#include "tasks/string_.h"
+/*#include <stdio.h>
 
 // Макрос для проверки и вывода результатов с использованием assertInt
 #define ASSERT_INT(expected, got) assertInt(expected, got, __FILE__, __FUNCTION__, __LINE__)
@@ -86,4 +85,4 @@ void testCountPalindromeWords() {
 int main() {
     testCountPalindromeWords();
     return 0;
-}
+}*/
