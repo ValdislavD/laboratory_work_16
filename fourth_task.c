@@ -1,4 +1,4 @@
-#include <stdio.h>
+/*#include <stdio.h>
 #include "tasks/string_.h"
 #include <ctype.h> // Для использования функции isdigit
 #include <windows.h>
@@ -90,4 +90,4 @@ int main() {
     // Вызываем тесты для функции replaceDigitsWithSpaces
     testReplaceDigitsWithSpaces();
     return 0;
-}
+}*/
