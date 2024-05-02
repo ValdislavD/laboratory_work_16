@@ -1,4 +1,4 @@
-#include <stdio.h>
+/*#include <stdio.h>
 #include "tasks/string_.h"
 
 // Максимальное количество слов в строке
@@ -170,3 +170,4 @@ int main() {
 
     return 0;
 }
+*/
