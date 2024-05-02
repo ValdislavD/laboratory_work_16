@@ -1,4 +1,4 @@
-#include "tasks/string_.h"
+/*#include "tasks/string_.h"
 
 // Макрос для проверки и вывода результатов с использованием assertInt
 #define ASSERT_INT(expected, got) assertInt(expected, got, __FILE__, __FUNCTION__, __LINE__)
@@ -132,4 +132,4 @@ int main() {
     testGetBagOfWords();
 
     return 0;
-}
+}*/
