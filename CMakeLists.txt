@@ -18,6 +18,7 @@ add_library(str tasks/string_.c
         ninth_task.c
         tenth_task.c
         eleventh_task.c
+        twelfth_task.c
 )
 
 target_link_libraries(untitled21 str)

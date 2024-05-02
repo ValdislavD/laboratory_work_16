@@ -154,6 +154,12 @@ build CMakeFiles/str.dir/eleventh_task.c.obj: C_COMPILER__str_unscanned_Debug C$
   OBJECT_DIR = CMakeFiles\str.dir
   OBJECT_FILE_DIR = CMakeFiles\str.dir
 
+build CMakeFiles/str.dir/twelfth_task.c.obj: C_COMPILER__str_unscanned_Debug C$:/Users/vladi/CLionProjects/untitled21/twelfth_task.c || cmake_object_order_depends_target_str
+  DEP_FILE = CMakeFiles\str.dir\twelfth_task.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\str.dir
+  OBJECT_FILE_DIR = CMakeFiles\str.dir
+
 
 # =============================================================================
 # Link build statements for STATIC_LIBRARY target str
@@ -162,7 +168,7 @@ build CMakeFiles/str.dir/eleventh_task.c.obj: C_COMPILER__str_unscanned_Debug C$
 #############################################
 # Link the static library libstr.a
 
-build libstr.a: C_STATIC_LIBRARY_LINKER__str_Debug CMakeFiles/str.dir/tasks/string_.c.obj CMakeFiles/str.dir/first_task.c.obj CMakeFiles/str.dir/second_task.c.obj CMakeFiles/str.dir/third_task.c.obj CMakeFiles/str.dir/fourth_task.c.obj CMakeFiles/str.dir/fifth_task.c.obj CMakeFiles/str.dir/sixth_task.c.obj CMakeFiles/str.dir/seventh.c.obj CMakeFiles/str.dir/eighth_task.c.obj CMakeFiles/str.dir/ninth_task.c.obj CMakeFiles/str.dir/tenth_task.c.obj CMakeFiles/str.dir/eleventh_task.c.obj
+build libstr.a: C_STATIC_LIBRARY_LINKER__str_Debug CMakeFiles/str.dir/tasks/string_.c.obj CMakeFiles/str.dir/first_task.c.obj CMakeFiles/str.dir/second_task.c.obj CMakeFiles/str.dir/third_task.c.obj CMakeFiles/str.dir/fourth_task.c.obj CMakeFiles/str.dir/fifth_task.c.obj CMakeFiles/str.dir/sixth_task.c.obj CMakeFiles/str.dir/seventh.c.obj CMakeFiles/str.dir/eighth_task.c.obj CMakeFiles/str.dir/ninth_task.c.obj CMakeFiles/str.dir/tenth_task.c.obj CMakeFiles/str.dir/eleventh_task.c.obj CMakeFiles/str.dir/twelfth_task.c.obj
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = CMakeFiles\str.dir
   POST_BUILD = cd .

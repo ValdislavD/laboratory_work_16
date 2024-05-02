@@ -1,4 +1,4 @@
-#include <stdio.h>
+/*#include <stdio.h>
 #include <ctype.h>
 #include "tasks/string_.h"
 
@@ -130,3 +130,4 @@ int main() {
     testAll(); // Запуск всех тестов
     return 0;
 }
+*/
