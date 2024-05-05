@@ -1,4 +1,4 @@
-#include <stdio.h>
+/*#include <stdio.h>
 
 #define MAX_N_WORDS_IN_STRING 100
 #define ASSERT_STRING(expected, got) assertString(expected, got, __FILE__, __FUNCTION__, __LINE__)
@@ -155,4 +155,4 @@ int main() {
     runTests();
 
     return 0;
-}
+}*/
