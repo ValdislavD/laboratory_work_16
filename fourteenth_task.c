@@ -1,4 +1,4 @@
-#include <stdio.h>
+/*#include <stdio.h>
 #include <stdbool.h>
 #include "tasks/string_.h"
 
@@ -95,7 +95,7 @@ void testHasAnagramPair() {
     const char *testString2 = "hello world this is a test string with some anagram words like hits his";
     const char *testString3 = "listen to silent and watch the god and dog";
     const char *testString4 = "apple banana orange peach strawberry";
-    
+
     // Ожидаемые результаты
     const char *expected1 = "The string contains a pair of anagram words.\n";
     const char *expected2 = "The string does not contain a pair of anagram words.\n";
@@ -134,4 +134,4 @@ void testHasAnagramPair() {
 int main() {
     testHasAnagramPair();
     return 0;
-}
+}*/
