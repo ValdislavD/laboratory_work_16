@@ -1,5 +1,5 @@
-#include <stdio.h>
-#include "tasks/string_.h"  // Подключаем нужные функции для работы с строками
+/*#include <stdio.h>
+#include "tasks/string_.h"
 
 #define ASSERT_STRING(expected, got) assertString(expected, got, __FILE__, __FUNCTION__, __LINE__)
 
@@ -110,3 +110,4 @@ int main() {
 
     return 0;
 }
+*/
