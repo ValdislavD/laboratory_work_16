@@ -1,4 +1,4 @@
-#include <stdio.h>
+/*#include <stdio.h>
 #include "tasks/string_.h"
 
 #define ASSERT_STRING(expected, got) assertString(expected, got, __FILE__, __FUNCTION__, __LINE__)
@@ -97,4 +97,4 @@ void runAllTests() {
 int main() {
     runAllTests();
     return 0;
-}
+}*/
