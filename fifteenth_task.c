@@ -1,4 +1,4 @@
-#include <stdio.h>
+/*#include <stdio.h>
 #include <stdbool.h>
 #include "tasks/string_.h"
 
@@ -96,3 +96,4 @@ int main() {
     testGetStringWithoutLastWord();
     return 0;
 }
+*/
