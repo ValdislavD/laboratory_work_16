@@ -22,7 +22,9 @@ char* findNonSpace(char *begin) {
 
 char* findSpace(char *begin) {
     while (*begin != ' ' && *begin != '\0')
-        ++begin;
+        if (*begin != '\0') {
+            ++begin;
+        }
     return begin;
 }
 
@@ -50,23 +52,12 @@ int my_strcmp(const char *lhs, const char *rhs) {
 }
 
 char* copy(const char *beginSource, const char *endSource, char *beginDestination) {
-    // Вычисляем длину фрагмента для копирования
-    size_t length = 0;
     const char *temp = beginSource;
     while (temp != endSource) {
-        ++length;
-        ++temp;
+        *beginDestination++ = *temp++;
     }
-
-    // Копируем фрагмент
-    temp = beginSource;
-    char *dest = beginDestination;
-    while (length--) {
-        *dest++ = *temp++;
-    }
-
-    // Возвращаем указатель на следующий свободный фрагмент памяти в destination
-    return dest;
+    *beginDestination = '\0'; // Добавляем завершающий нулевой символ
+    return beginDestination;
 }
 
 char* copyIf(char *beginSource, const char *endSource, char *beginDestination, int (*f)(int)) {

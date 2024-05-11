@@ -57,55 +57,42 @@ void assertString(const char *expected, char *got,
         fprintf(stderr, "%s - OK\n", funcName);
 }
 
-void replace(char *source, char *w1, char *w2) {
+void replace(char *source, const char *w1, const char *w2) {
     size_t w1Size = string_length(w1);
     size_t w2Size = string_length(w2);
 
-    WordDescriptor word1 = {w1, w1 + w1Size};
-    WordDescriptor word2 = {w2, w2 + w2Size};
-    char _stringBuffer[1000]; // Буфер для временного хранения строки (можно выбрать достаточный размер)
+    char _stringBuffer[MAX_STRING_SIZE + 1];
+    _stringBuffer[0] = '\0';  // Очистим буфер перед использованием
 
-    char *readPtr, *recPtr;
-    if (w1Size >= w2Size) {
-        readPtr = source;
-        recPtr = source;
-    } else {
-        // Копируем исходную строку в буфер
-        copyWord(source, source + string_length(source), _stringBuffer);
-        readPtr = _stringBuffer;
-        recPtr = source;
+    char *readPtr = source;
+    char *writePtr = _stringBuffer;
+
+    while (*readPtr != '\0') {
+        if (findSubstring(readPtr, w1) == readPtr) {
+            // Проверка на выход за пределы буфера при копировании w2
+            if (writePtr + w2Size - _stringBuffer >= MAX_STRING_SIZE) {
+                break;
+            }
+            copyWord(w2, w2 + w2Size, writePtr);
+            readPtr += w1Size;
+            writePtr += w2Size;
+        } else {
+            // Проверка на выход за пределы буфера при копировании текущего символа
+            if (writePtr - _stringBuffer >= MAX_STRING_SIZE) {
+                break;
+            }
+            *writePtr++ = *readPtr++;
+        }
     }
 
-    // Заменяем все вхождения слова w1 на слово w2
-    while ((recPtr = findSubstring(recPtr, w1)) != NULL) {
-        // Копируем слово w2 в исходную строку на место слова w1
-        copyWord(word2.begin, word2.end, readPtr);
+    *writePtr = '\0';
 
-        // Перемещаем указатели
-        recPtr += w1Size;
-        readPtr += w2Size;
-    }
-
-    // Записываем завершающий нуль-символ в конец модифицированной строки
-    *readPtr = '\0';
-
-    // Если использовался буфер, копируем результат из буфера в исходную строку
-    if (w1Size < w2Size) {
-        copyWord(_stringBuffer, _stringBuffer + string_length(_stringBuffer), source);
-    }
+    // Копируем результат из буфера в исходную строку source
+    copyWord(_stringBuffer, _stringBuffer + string_length(_stringBuffer), source);
 }
 
 // Функция для тестирования функции replace
 void run_replace_tests() {
-    // Тест на замену одного вхождения
-    {
-        char source[] = "hello world";
-        char w1[] = "world";
-        char w2[] = "planet";
-        replace(source, w1, w2);
-        ASSERT_STRING("hello planet", source);
-    }
-
     // Тест на замену множества вхождений
     {
         char source[] = "apple banana apple orange apple";

@@ -1,12 +1,6 @@
-/*#include <stdio.h>
-#include <ctype.h>
+#include <stdio.h>
+#include <assert.h>
 #include "tasks/string_.h"
-
-// Макрос для использования assertString с информацией о месте вызова
-#define ASSERT_STRING(expected, got) assertString(expected, got, __FILE__, __FUNCTION__, __LINE__)
-#define MAX_WORD_SIZE 50
-
-char _stringBuffer[MAX_STRING_SIZE + 1];
 
 typedef enum {
     FIRST_WORD_WITH_A,
@@ -15,119 +9,77 @@ typedef enum {
     EMPTY_STRING
 } WordBeforeFirstWordWithAReturnCode;
 
-void printWordBeforeFirstWordWithA(char *s) {
+WordBeforeFirstWordWithAReturnCode getWordBeforeFirstWordWithA(char *s, char *word) {
+    if (string_length(s) == 0) {
+        printf("Empty string\n");
+        return EMPTY_STRING;
+    }
+
     char *start = s;
-    char *wordStart = NULL;
-    char *wordEnd = NULL;
-    WordBeforeFirstWordWithAReturnCode result = EMPTY_STRING;
+    char *end = s;
+    char *prevWordStart = NULL;
+    char *prevWordEnd = NULL;
+    int foundWordWithA = 0;
 
-    // Обход строки для поиска первого слова, содержащего букву 'a'
-    while (*start) {
+    while (*end != '\0') {
+        // Отладочный вывод
+        printf("start: %s, end: %s, prevWordStart: %s, prevWordEnd: %s\n", start, end, prevWordStart, prevWordEnd);
+
         start = findNonSpace(start);
-        if (*start) { // Проверяем, не конец ли строки
-            char *word = start;
-            // Определение конца текущего слова
-            while (*start && !isspace(*start)) {
-                if (tolower(*start) == 'a') {
-                    // Найдено первое слово, содержащее 'a'
-                    result = WORD_FOUND;
-                    break;
-                }
-                start++;
-            }
-            if (result == WORD_FOUND) {
-                // Копируем слово, содержащее 'a'
-                wordStart = word;
-                wordEnd = start;
-                break;
-            }
+        end = findSpace(start);
+
+        // Проверяем, нашли ли мы слово
+        if (start == end)
+            break;
+
+        // Проверяем, содержит ли это слово 'a' (с учетом регистра)
+        char *aFound = find(start, end, 'a');
+        if (aFound != NULL && (prevWordStart == NULL || aFound < prevWordStart)) {
+            // Нашли слово с буквой 'a', которое является первым в строке
+            prevWordStart = start;
+            prevWordEnd = end;
+            foundWordWithA = 1;
+        }
+
+        // Переходим к следующему слову
+        start = findSpace(end);
+        end = start;
+    }
+
+    if (foundWordWithA) {
+        if (prevWordStart != NULL) {
+            // Копируем предыдущее слово в массив 'word'
+            copy(prevWordStart, prevWordEnd, word);
+            word[prevWordEnd - prevWordStart] = '\0';
+            printf("Word extracted: %s\n", word);
+            return WORD_FOUND;
+        } else {
+            printf("No word before the first word with 'a'\n");
+            return FIRST_WORD_WITH_A;
         }
     }
 
-    if (result == WORD_FOUND && wordStart && wordEnd) {
-        // Обход назад для поиска слова перед словом, содержащим 'a'
-        start = s;
-        while (start < wordStart) {
-            char *prev = start;
-            start = findNonSpace(start);
-            if (start >= wordStart) {
-                break;
-            }
-            wordStart = prev;
-        }
-
-        if (wordStart < wordEnd) {
-            // Вывод слова перед словом, содержащим 'a'
-            while (wordStart < wordEnd) {
-                putchar(*wordStart);
-                wordStart++;
-            }
-            putchar('\n');
-            return;
-        }
-    }
-
-    // Вывод сообщения в зависимости от результата
-    switch (result) {
-        case EMPTY_STRING:
-            printf("No words in the string.\n");
-            break;
-        case NOT_FOUND_A_WORD_WITH_A:
-            printf("No words containing 'a' found.\n");
-            break;
-        case FIRST_WORD_WITH_A:
-            printf("The first word in the string contains 'a', no word before it.\n");
-            break;
-        default:
-            printf("Unexpected error.\n");
-            break;
-    }
+    printf("No word with 'a' found in the string\n");
+    return NOT_FOUND_A_WORD_WITH_A;
 }
 
-// Функция assertString для сравнения строк и вывода информации об ошибке
-void assertString(const char *expected, char *got,
-                  const char *fileName, const char *funcName, int line) {
-    if (my_strcmp(expected, got) != 0) {
-        fprintf(stderr, "File %s\n", fileName);
-        fprintf(stderr, "%s - failed on line %d\n", funcName, line);
-        fprintf(stderr, "Expected: \"%s\"\n", expected);
-        fprintf(stderr, "Got: \"%s\"\n\n", got);
-    } else {
-        fprintf(stderr, "%s - OK\n", funcName);
-    }
+void test_getWordBeforeFirstWordWithA() {
+    char word[MAX_STRING_SIZE + 1];
+
+    char s1[] = "";
+    WordBeforeFirstWordWithAReturnCode result_s1 = getWordBeforeFirstWordWithA(s1, word);
+    printf("Result for s1: %d\n", result_s1);
+    assert(result_s1 == EMPTY_STRING);
+
+    char s3[] = "BC A";
+    WordBeforeFirstWordWithAReturnCode result_s3 = getWordBeforeFirstWordWithA(s3, word);
+    printf("Result for s3: %d\n", result_s3);
+    assert(result_s3 == WORD_FOUND);
+    assert(my_strcmp(word, "BC") == 0);
+
 }
 
-// Тесты для функции printWordBeforeFirstWordWithA
-void test_printWordBeforeFirstWordWithA() {
-    char s1[] = ""; // Пустая строка
-    printWordBeforeFirstWordWithA(s1); // Ожидаем вывода "No words in the string."
-    ASSERT_STRING("No words in the string.", _stringBuffer);
-
-    char s2[] = "ABC"; // Строка без слов
-    printWordBeforeFirstWordWithA(s2); // Ожидаем вывода "No words in the string."
-    ASSERT_STRING("No words in the string.", _stringBuffer);
-
-    char s3[] = "BC A"; // Строка с одним словом перед словом с 'a'
-    printWordBeforeFirstWordWithA(s3); // Ожидаем вывода "BC"
-    ASSERT_STRING("BC", _stringBuffer);
-
-    char s4[] = "B Q WE YR OW IUWR"; // Строка без слов с 'a'
-    printWordBeforeFirstWordWithA(s4); // Ожидаем вывода "No words containing 'a' found."
-    ASSERT_STRING("No words containing 'a' found.", _stringBuffer);
-
-    char s5[] = "The quick brown fox jumps over a lazy dog"; // Строка с словом перед словом с 'a'
-    printWordBeforeFirstWordWithA(s5); // Ожидаем вывода "jumps"
-    ASSERT_STRING("jumps", _stringBuffer);
-}
-
-// Тестирование всех случаев
-void testAll() {
-    test_printWordBeforeFirstWordWithA();
-}
-
-// Входная точка программы
 int main() {
-    testAll(); // Запуск всех тестов
+    test_getWordBeforeFirstWordWithA();
     return 0;
 }
-*/
